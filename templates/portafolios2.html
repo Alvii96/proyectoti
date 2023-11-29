@@ -53,12 +53,6 @@
                                 <!-- to get an API token!-->
                                 <form id="myForm" method="post">
                                     <div class="form-container">
-                                        <script>
-                                            $(document).ready(function() {
-                                                $("#datepicker").datepicker();
-                                                $.datepicker.setDefaults($.datepicker.regional["es"]);
-                                            });
-                                        </script>
                                         <table class="form-table">
                                             <tr>
                                                 <td>
@@ -202,6 +196,123 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+        <form id="myForm" method="post">
+            <h1>Portafolio FFMM</h1>
+            <table class="form-table">
+                <tr>
+                    <td>
+                        <label for="datepicker">Seleccionar Fecha:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="datepicker" name="datepicker" value="{{ fecha_actual}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="tipos">Seleccionar cartera:</label>
+                    </td>
+                    <td>
+                        <select id="tipos" name="tipos">
+                            {% for tipo in tipos %}
+                                <option value="{{ tipo }}">{{ tipo }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fondos">Seleccionar fondo:</label>
+                    </td>
+                    <td>
+                        <select id="fondos" name="fondos">
+                            {% for fondo in fondos %}
+                                <option value="{{ fondo }}">{{ fondo }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <button class="boton" onclick="submitForm2()">Consultar</button>
+                </tr>
+            </table>
+
+        <script>
+            function submitForm2() {
+                var form = document.getElementById('myForm');
+                form.action = '/portafolios';
+                form.submit();
+            }
+        
+            function submitForm() {
+                var form = document.getElementById('myForm');
+                form.action = '/detalle-fondo';
+                form.submit();
+            }
+            $(document).ready(function() {
+                $("#datepicker").datepicker({
+                    altFormat: 'yy-mm-dd',
+                    defaultDate: new Date('{{ fecha_actual }}')
+                });
+            });
+        </script>
     </body>
 </html>
+<form id="myForm" method="post">
+    <div class="form-container">
+        <table class="form-table">
+            <tr>
+                <td>
+                    <label for="datepicker">Seleccionar fecha:</label>
+                </td>
+                <td>
+                    <input type="text" id="datepicker" name="datepicker" value="{{ fecha_actual}}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="tipos">Seleccionar cartera:</label>
+                </td>
+                <td>
+                    <select id="tipos" name="tipos" style="width: 100%; padding: 2px; font-size: 16px;">
+                        <option value="nacional">Nacional</option>
+                        <option value="internacional">Internacional</option>
+                    </select>
+                </td>                                                
+            </tr>
+            <tr>
+                <td>
+                    <label for="fondos">Seleccionar fondo:</label>
+                </td>
+                <td>
+                <select id="fondos" name="fondos" style="padding: 2px; font-size: 16px;">
+                    {% for fondo in fondos %}
+                        <option value="{{ fondo }}">{{ fondo }}</option>
+                    {% endfor %}
+                    <option value="8089">8089</option>
+                    <option value="8108">8108</option>
+                    <option value="8125">8125</option>
+                    <option value="8203">8203</option>
+                    <option value="8287">8287</option>
+                    <option value="8315">8315</option>
+                    <option value="8346">8346</option>
+                    <option value="8357">8357</option>
+                    <option value="8375">8375</option>
+                    <option value="8421">8421</option>
+                    <option value="8676">8676</option>
+                    <option value="8806">8806</option>
+                    <option value="9074">9074</option>
+                    <option value="9154">9154</option>
+                    <option value="9201">9201</option>
+                    <option value="9238">9238</option>
+                </select>
+                
+            </tr>
+        </table>
+    
+        <br>
+        <div class="contenedor">
+        {{ html|safe }}
+        </div>
+    </form>
             {% endblock %}

@@ -156,23 +156,6 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-
-        <form id="myForm" method="post">
-            <h1>Rentabilidad FFMM</h1>
-            <div class="form-container">
-                <div class="form-row">
-                    <div>
-                        <label for="datepicker">Seleccionar Fecha:</label>
-                        <input type="text" id="datepicker" name="datepicker" value="{{ fecha_actual}}">
-                        <button class="boton" onclick="submitForm2()">Consultar</button>
-                    </div>
-                </div>
-                <div class="contenedor">
-                {{ html|safe }}
-                <div>
-            </div>
-        </form>
-    
         <script>
             function submitForm(run) {
                 // Puedes hacer algo con el valor de run, por ejemplo, imprimirlo

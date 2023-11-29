@@ -18,13 +18,13 @@ def inicio():
 def nosotros():
     return render_template('nosotros.html')
 
-@app.route('/rentabilidades2')
+@app.route('/rentabilidades')
 def rentabilidades2():
     return render_template('rentabilidades2.html')
 
-@app.route('/portafolios2')
+@app.route('/portafolios')
 def portafolios2():
-    return render_template('portafolios2.html')
+    return render_template('portafolios.html')
 
 @app.route('/fondos-mutuos')
 def fondos_mutuos():
