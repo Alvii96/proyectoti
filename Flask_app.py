@@ -22,6 +22,10 @@ def nosotros():
 def rentabilidades2():
     return render_template('rentabilidades2.html')
 
+@app.route('/portafolios2')
+def portafolios2():
+    return render_template('portafolios2.html')
+
 @app.route('/fondos-mutuos')
 def fondos_mutuos():
     return render_template('index.html')

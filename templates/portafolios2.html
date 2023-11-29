@@ -39,7 +39,7 @@
                     <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
                         <div class="text-center mb-5">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
-                            <h1 class="fw-bolder">RENTABILIDADES</h1>
+                            <h1 class="fw-bolder">PORTAFOLIOS</h1>
                             <p class="lead fw-normal text-muted mb-0">Selecciona la fecha</p>
                         </div>
                         <div class="row gx-5 justify-content-center">
@@ -53,41 +53,86 @@
                                 <!-- to get an API token!-->
                                 <form id="myForm" method="post">
                                     <div class="form-container">
-                                        <div class="form-row">
-                                            <div>
-                                                <label for="datepicker">Seleccionar Fecha:</label>
-                                                <input type="text" id="datepicker" name="datepicker" value="{{ fecha_actual}}">
-                                            </div>
-                                        </div>
+                                        <script>
+                                            $(document).ready(function() {
+                                                $("#datepicker").datepicker();
+                                                $.datepicker.setDefaults($.datepicker.regional["es"]);
+                                            });
+                                        </script>
+                                        <table class="form-table">
+                                            <tr>
+                                                <td>
+                                                    <label for="datepicker">Seleccionar fecha:</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="datepicker" name="datepicker" value="{{ fecha_actual}}">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="tipos">Seleccionar cartera:</label>
+                                                </td>
+                                                <td>
+                                                    <select id="tipos" name="tipos" style="width: 100%; padding: 2px; font-size: 16px;">
+                                                        <option value="nacional">Nacional</option>
+                                                        <option value="internacional">Internacional</option>
+                                                    </select>
+                                                </td>                                                
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="fondos">Seleccionar fondo:</label>
+                                                </td>
+                                                <td>
+                                                <select id="fondos" name="fondos" style="padding: 2px; font-size: 16px;">
+                                                    {% for fondo in fondos %}
+                                                        <option value="{{ fondo }}">{{ fondo }}</option>
+                                                    {% endfor %}
+                                                    <option value="8089">8089</option>
+                                                    <option value="8108">8108</option>
+                                                    <option value="8125">8125</option>
+                                                    <option value="8203">8203</option>
+                                                    <option value="8287">8287</option>
+                                                    <option value="8315">8315</option>
+                                                    <option value="8346">8346</option>
+                                                    <option value="8357">8357</option>
+                                                    <option value="8375">8375</option>
+                                                    <option value="8421">8421</option>
+                                                    <option value="8676">8676</option>
+                                                    <option value="8806">8806</option>
+                                                    <option value="9074">9074</option>
+                                                    <option value="9154">9154</option>
+                                                    <option value="9201">9201</option>
+                                                    <option value="9238">9238</option>
+                                                </select>
+                                                
+                                            </tr>
+                                        </table>
+                                    
+                                        <br>
                                         <div class="contenedor">
                                         {{ html|safe }}
-                                        <div>
-                                    </div>
-                                </form>
-                                <script>
-                                    function submitForm(run) {
-                                        // Puedes hacer algo con el valor de run, por ejemplo, imprimirlo
-                                        console.log('Valor de run:', run);
-                                
-                                        // Ahora puedes usar el valor de run en tu lógica, por ejemplo, cambiar la acción del formulario
-                                        var form = document.getElementById('myForm');
-                                        form.action = '/detalle-fondo/' + run;
-                                        form.submit();
-                                    }
-                            
-                                    function submitForm2() {
-                                        var form = document.getElementById('myForm');
-                                        form.action = '/rentabilidades2';
-                                        form.submit();
-                                    }
-                            
-                                    $(document).ready(function() {
-                                        $("#datepicker").datepicker({
-                                            altFormat: 'yy-mm-dd', // Formato alternativo de visualización (puede ajustarse según tus necesidades)
-                                            defaultDate: new Date('{{ fecha_actual }}') // Utiliza la fecha por defecto proporcionada por Flask
+                                        </div>
+                                    </form>
+                                    <script>
+                                        function submitForm2() {
+                                            var form = document.getElementById('myForm');
+                                            form.action = '/portafolios';
+                                            form.submit();
+                                        }
+                                    
+                                        function submitForm() {
+                                            var form = document.getElementById('myForm');
+                                            form.action = '/detalle-fondo';
+                                            form.submit();
+                                        }
+                                        $(document).ready(function() {
+                                            $("#datepicker").datepicker({
+                                                altFormat: 'yy-mm-dd',
+                                                defaultDate: new Date('{{ fecha_actual }}')
+                                            });
                                         });
-                                    });
-                                </script>
+                                    </script>
                                    
                                     <!-- Submit error message-->
                                     <!---->
@@ -100,6 +145,7 @@
                                     <!-- Submit Button-->
                                     <div class="d-grid" style="margin: 20px;">
                                         <button onclick="submitForm2()" class="btn btn-primary" id="submitButton1" type="submit">Consultar</button>
+
                                     </div>
                                     
                                 </form>
@@ -156,48 +202,6 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-
-        <form id="myForm" method="post">
-            <h1>Rentabilidad FFMM</h1>
-            <div class="form-container">
-                <div class="form-row">
-                    <div>
-                        <label for="datepicker">Seleccionar Fecha:</label>
-                        <input type="text" id="datepicker" name="datepicker" value="{{ fecha_actual}}">
-                        <button class="boton" onclick="submitForm2()">Consultar</button>
-                    </div>
-                </div>
-                <div class="contenedor">
-                {{ html|safe }}
-                <div>
-            </div>
-        </form>
-    
-        <script>
-            function submitForm(run) {
-                // Puedes hacer algo con el valor de run, por ejemplo, imprimirlo
-                console.log('Valor de run:', run);
-        
-                // Ahora puedes usar el valor de run en tu lógica, por ejemplo, cambiar la acción del formulario
-                var form = document.getElementById('myForm');
-                form.action = '/detalle-fondo/' + run;
-                form.submit();
-            }
-    
-            function submitForm2() {
-                var form = document.getElementById('myForm');
-                form.action = '/rentabilidades';
-                form.submit();
-            }
-    
-            $(document).ready(function() {
-                $("#datepicker").datepicker({
-                    altFormat: 'yy-mm-dd', // Formato alternativo de visualización (puede ajustarse según tus necesidades)
-                    defaultDate: new Date('{{ fecha_actual }}') // Utiliza la fecha por defecto proporcionada por Flask
-                });
-            });
-    
-        </script>
     </body>
 </html>
             {% endblock %}

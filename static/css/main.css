@@ -10845,3 +10845,31 @@ html {
   background-repeat: no-repeat;
   min-height: 15rem;
 }
+
+/* Datepicker */
+#datepicker {
+  width: 80px;
+  height: 10px;
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* MODOFICACION DATEPICKER */
+
+.ui-datepicker {
+  font-size: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ui-datepicker-calendar {
+  width: 200px;
+}
+
+.ui-datepicker-title {
+  font-size: 20px;
+}
