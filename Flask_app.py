@@ -8,7 +8,19 @@ app = Flask(__name__)
 # Rutas
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('inicio.html')
+
+@app.route('/inicio')
+def inicio():
+    return render_template('inicio.html')
+
+@app.route('/nosotros')
+def nosotros():
+    return render_template('nosotros.html')
+
+@app.route('/rentabilidades2')
+def rentabilidades2():
+    return render_template('rentabilidades2.html')
 
 @app.route('/fondos-mutuos')
 def fondos_mutuos():
